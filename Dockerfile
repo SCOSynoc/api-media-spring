@@ -1,8 +1,6 @@
-FROM maven:3.8.5-openjdk-17 as build
-COPY . .
-RUN mvn clean packages -DSkipTests
-
-FROM openjdk:17.0.1-jdk-slim
-COPY __frombuild /target/media-app-apis-0.0.1-SNAPSHOT.jar media-app-apis.jar/
+FROM eclipse-termurin:17-jdk-alpine
+VOLUME /tmp
+COPY target/*.jar app.jar
+ENTRYPOINT ["java", "-jar" , "/app.jar"]
 EXPOSE 8080
-ENTRYPOINT ["java", "-jar" , "media-app-apis.jar"]
+
