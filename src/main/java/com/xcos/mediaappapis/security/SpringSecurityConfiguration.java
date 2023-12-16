@@ -31,6 +31,7 @@ public class SpringSecurityConfiguration  {
         http.authorizeHttpRequests(
                 auth -> auth.anyRequest().authenticated()
         );
+        http.cors((cors) -> cors.disable());
         http.httpBasic(withDefaults());
         http.sessionManagement((session) -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
         http.csrf( (csrf) -> csrf.disable());
