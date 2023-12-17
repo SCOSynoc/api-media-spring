@@ -1,0 +1,13 @@
+com\xcos\mediaappapis\model\Post.class
+com\xcos\mediaappapis\exception\UserNotFoundException.class
+com\xcos\mediaappapis\repository\MyUserRepository.class
+com\xcos\mediaappapis\security\SpringSecurityConfiguration.class
+com\xcos\mediaappapis\controller\PostsController.class
+com\xcos\mediaappapis\model\User.class
+com\xcos\mediaappapis\service\UserService.class
+com\xcos\mediaappapis\model\ErrorDetails.class
+com\xcos\mediaappapis\service\PostsService.class
+com\xcos\mediaappapis\exception\CustomizeResponseExceptionHandler.class
+com\xcos\mediaappapis\repository\MediaPostRepository.class
+com\xcos\mediaappapis\controller\UserController.class
+com\xcos\mediaappapis\MediaAppApisApplication.class
