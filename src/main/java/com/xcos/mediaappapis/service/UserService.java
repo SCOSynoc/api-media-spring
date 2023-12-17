@@ -1,6 +1,8 @@
 package com.xcos.mediaappapis.service;
 
 
+import com.xcos.mediaappapis.dto.LoginInDto;
+import com.xcos.mediaappapis.exception.UserNotFoundException;
 import com.xcos.mediaappapis.model.User;
 import com.xcos.mediaappapis.repository.MyUserRepository;
 import jakarta.validation.Valid;
@@ -58,8 +60,25 @@ public class UserService {
             myUserRepository.save(previousUser);
             return true;
         }
-
     }
+
+
+    public User loginUser(LoginInDto loginInDto) {
+        try {
+            User authenticatedUser = myUserRepository.findItemByName(loginInDto.getName());
+            if(passwordEncoder.matches(loginInDto.getPassword(), authenticatedUser.getPassword())
+                    && loginInDto.getName().equals(authenticatedUser.getName())) {
+                return authenticatedUser;
+            }else {
+                throw new UserNotFoundException("User is not authenticated");
+            }
+        }catch (Exception e) {
+            throw new UserNotFoundException(e.getLocalizedMessage());
+        }
+    }
+
+
+
 
 
 

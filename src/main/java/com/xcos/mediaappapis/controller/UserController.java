@@ -1,6 +1,7 @@
 package com.xcos.mediaappapis.controller;
 
 
+import com.xcos.mediaappapis.dto.LoginInDto;
 import com.xcos.mediaappapis.exception.UserNotFoundException;
 import com.xcos.mediaappapis.model.User;
 import com.xcos.mediaappapis.repository.MyUserRepository;
@@ -64,5 +65,19 @@ public class UserController {
               throw  new UserNotFoundException("User does not exists");
           }
     }
+
+
+    @Operation(summary = "This request will log user in.")
+    @PostMapping(value = "/media-api/login-user")
+    @ResponseStatus(HttpStatus.OK)
+    public User userLogin(@Valid @RequestBody LoginInDto loginInDto) {
+        return userService.loginUser(loginInDto);
+    }
+
+
+
+
+
+
 
 }

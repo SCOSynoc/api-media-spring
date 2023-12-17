@@ -17,6 +17,8 @@ public class User {
     private String id;
     @Size(min = 2, message = "Name should be at-least two characters")
     private String name;
+
+    @JsonIgnore
     @NotBlank
     private String password;
     @NotBlank
