@@ -1,5 +1,5 @@
 # API URL 
-- https://media-app-services.onrender.com
+- https://media-app-services.onrender.com/media-api/users
 # API DOCUMENTATION 
 - https://media-app-services.onrender.com/swagger-ui/index.html#
 # Test user 
