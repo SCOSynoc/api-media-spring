@@ -17,9 +17,13 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
+
+
 
 @RestController
 public class UserController {
@@ -36,8 +40,8 @@ public class UserController {
 
     @PostMapping(value = "/media-api/users")
     @ResponseStatus(HttpStatus.CREATED)
-    public void createUser(@Valid @RequestBody User user) {
-        userService.createUser(user);
+    public void createUser(@Valid @RequestBody User user, BindingResult result) {
+        userService.createUser(user, result);
     }
 
 

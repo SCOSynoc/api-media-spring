@@ -1,12 +1,14 @@
 package com.xcos.mediaappapis.service;
 
 
+import com.xcos.mediaappapis.exception.CustomizeResponseExceptionHandler;
 import com.xcos.mediaappapis.exception.UserNotFoundException;
 import com.xcos.mediaappapis.model.Post;
 import com.xcos.mediaappapis.model.User;
 import com.xcos.mediaappapis.repository.MediaPostRepository;
 import com.xcos.mediaappapis.repository.MyUserRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.BindingResult;
 
 import java.util.List;
 
@@ -22,8 +24,11 @@ public class PostsService {
         this.mediaPostRepository = mediaPostRepository;
     }
 
-    public void createPost(String id, Post post){
+    public void createPost(String id, Post post, BindingResult result){
         User user = myUserRepository.findById(id).orElse(null);
+        if(result.hasErrors()) {
+            throw new RuntimeException();
+        }
         if(user == null) {
             throw new UserNotFoundException("User does not exist");
         }else{

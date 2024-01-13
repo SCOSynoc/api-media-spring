@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
@@ -29,13 +30,16 @@ public class UserService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    public void createUser(User user){
+    public void createUser(@Valid User user, BindingResult result){
+        if(result.hasErrors()) {
+            throw new RuntimeException();
+        }
         User user1 = new User();
         user1.setId(user.getId());
         user1.setPassword(passwordEncoder.encode(user.getPassword()));
         user1.setName(user.getName());
         user1.setLocalDate(user.getLocalDate());
-      myUserRepository.save(user1);
+        myUserRepository.save(user1);
     }
 
     public List<User> getAllUsers() {
@@ -76,6 +80,8 @@ public class UserService {
             throw new UserNotFoundException(e.getLocalizedMessage());
         }
     }
+
+
 
 
 

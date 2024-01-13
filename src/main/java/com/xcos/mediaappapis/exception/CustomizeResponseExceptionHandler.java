@@ -11,6 +11,7 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import java.time.LocalDateTime;
+import java.util.Locale;
 
 public class CustomizeResponseExceptionHandler extends ResponseEntityExceptionHandler {
 
@@ -24,6 +25,8 @@ public class CustomizeResponseExceptionHandler extends ResponseEntityExceptionHa
 
     }
 
+
+
     protected ResponseEntity<Object> handleMethodArgumentNotValid(
             MethodArgumentNotValidException ex,
             HttpHeaders headers, HttpStatusCode status,
@@ -31,7 +34,7 @@ public class CustomizeResponseExceptionHandler extends ResponseEntityExceptionHa
 
         ErrorDetails errorDetails = new ErrorDetails(
                 LocalDateTime.now(),
-                ex.getFieldError().getDefaultMessage(),
+                ex.getTypeMessageCode(),
                 request.getDescription(false)
         );
 

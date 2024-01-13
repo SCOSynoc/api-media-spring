@@ -4,9 +4,12 @@ package com.xcos.mediaappapis.controller;
 import com.xcos.mediaappapis.model.Post;
 import com.xcos.mediaappapis.service.PostsService;
 import jakarta.validation.Valid;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
+
 
 @RestController
 public class PostsController {
@@ -18,8 +21,8 @@ public class PostsController {
     }
 
     @PostMapping(value = "/media-api/users/{id}/posts")
-    public void createPostForUser(@PathVariable String id,@Valid @RequestBody Post post){
-       postsService.createPost(id, post);
+    public void createPostForUser(@PathVariable String id, @Valid @RequestBody Post post, BindingResult result){
+       postsService.createPost(id, post, result);
     }
 
     @GetMapping(value = "/media-api/users/{id}/posts")

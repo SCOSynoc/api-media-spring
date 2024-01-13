@@ -18,13 +18,14 @@ public class User {
     @Size(min = 2, message = "Name should be at-least two characters")
     private String name;
 
+
     @JsonIgnore
-    @NotBlank
+    @NotBlank(message = "Password field is required")
     private String password;
     @NotBlank
     private String  localDate;
 
-
+    private Photo photo;
 
     @JsonIgnore
     List<Post> postList;
@@ -37,16 +38,25 @@ public class User {
         this.password = password;
     }
 
-    public User(String id, String name, String localDate, List<Post> postList, String password) {
+    public User(String id, String name, String localDate, List<Post> postList, String password, Photo photo) {
         this.id = id;
         this.name = name;
         this.localDate = localDate;
         this.postList = postList;
-        this.password = password;;
+        this.password = password;
+        this.photo = photo;
     }
 
     public User() {
 
+    }
+
+    public Photo getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(Photo photo) {
+        this.photo = photo;
     }
 
     public String getId() {
